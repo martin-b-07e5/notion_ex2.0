@@ -1,0 +1,47 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1>Weather App</h1>
+
+      <form action="/" method="post">
+        <input
+          type="text"
+          name="city"
+          placeholder="Input a city name"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {% if weather_data %}
+      <div class="weather-info">
+        <h2><strong>City: </strong> {{ weather_data['city'] }}</h2>
+        <p><strong>Description: </strong> {{ weather_data['description'] }}</p>
+        <p><strong>Temperature: </strong> {{ weather_data['temperature'] }}°C</p>
+        <p><strong>Humidity: </strong> {{ weather_data['humidity'] }}%</p>
+        <p><strong>Wind speed: </strong> {{ weather_data['wind_speed'] }} km/h</p>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </body>
+</html>
